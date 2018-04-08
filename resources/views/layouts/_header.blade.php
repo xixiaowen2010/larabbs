@@ -53,7 +53,14 @@
                             </span>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
-
+                        @can('manage_contents')
+                            <li>
+                                <a href="{{ url(config('administrator.uri')) }}">
+                                    <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
+                                    管理后台
+                                </a>
+                            </li>
+                        @endcan
                         <ul class="dropdown-menu" role="menu">
                             <li>
                                 <a href="{{ route('users.show', Auth::id()) }}">
