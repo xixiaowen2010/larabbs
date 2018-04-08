@@ -16,8 +16,8 @@ return [
             'title'    => '话题',
             'sortable' => false,
             'output'   => function ($value, $model) {
-//                return '<div style="max-width:260px">' . model_link($value, $model) . '</div>';
-                return '<div style="max-width:260px">' . model_admin_link(e($model->title), $model) . '</div>';
+                return '<div style="max-width:260px">' . model_link($value, $model) . '</div>';
+//                return '<div style="max-width:260px">' . model_admin_link(e($model->title), $model) . '</div>';
             },
         ],
         'user' => [
