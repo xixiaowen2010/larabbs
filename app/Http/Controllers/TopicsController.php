@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Link;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,7 +19,7 @@ class TopicsController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
-	public function index(Request $request,Topic $topic,User $user)
+	public function index(Request $request,Topic $topic,User $user,Link $link)
 	{
 //		$topics = Topic::paginate(30);
         //预加载功能减少查询次数
@@ -27,8 +28,9 @@ class TopicsController extends Controller
 //        dd($request->order);
         $topics = $topic->withOrder($request->order)->paginate(20);
         $active_users = $user->getActiveUsers();
+        $links = $link->getAllCached();
 //        dd($active_users);
-		return view('topics.index', compact('topics','active_users'));
+		return view('topics.index', compact('topics','active_users','links'));
 	}
 
     public function show(Request $request,Topic $topic)
